@@ -64,3 +64,15 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: sarif
+      
+      - name: Start analysis for transport
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.transport_mayhemfile}}
+          sarif-output: sarif
+      
+      - name: Upload SARIF file(s)
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: sarif
