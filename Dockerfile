@@ -9,12 +9,12 @@ RUN ${HOME}/.cargo/bin/rustup default nightly
 RUN ${HOME}/.cargo/bin/cargo install honggfuzz
 RUN git clone https://github.com/mcginty/snow.git
 WORKDIR /snow
-COPY Mayhemfile Mayhemfile
+COPY /Mayhem/* /Mayhem/
 WORKDIR /snow/hfuzz
 RUN RUSTFLAGS="-Znew-llvm-pass-manager=no" HFUZZ_RUN_ARGS="--run_time $run_time --exit_upon_crash" ${HOME}/.cargo/bin/cargo hfuzz build
 # Package Stage
 FROM ubuntu:20.04
 
 COPY --from=builder /snow/hfuzz/hfuzz_target/x86_64-unknown-linux-gnu/release/* /
-COPY --from=builder /snow/Mayhemfile /
+COPY --from=builder /snow/Mayhem/* /
 

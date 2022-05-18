@@ -1,0 +1,6 @@
+project: code-terror/snow
+target: params
+
+cmds:
+  - cmd: ./params
+    honggfuzz: true

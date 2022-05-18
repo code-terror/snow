@@ -1,0 +1,6 @@
+project: code-terror/snow
+target: transport
+
+cmds:
+  - cmd: ./transport
+    honggfuzz: true

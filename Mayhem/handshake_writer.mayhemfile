@@ -1,0 +1,6 @@
+project: code-terror/snow
+target: handshake_writer
+
+cmds:
+  - cmd: ./handshake_writer
+    honggfuzz: true
